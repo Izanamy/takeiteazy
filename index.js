@@ -1,11 +1,13 @@
 const { getAllFilePathsWithExtension, readFile } = require('./fileSystem');
 const { readLine } = require('./console');
+const showTodos = require('./commands/show');
+const files = getFiles();
 
 app();
 
-function app () {
-    const files = getFiles();
 
+function app () {
+    
     console.log('Please, write your command!');
     readLine(processCommand);
 }
@@ -21,7 +23,7 @@ function processCommand (command) {
             process.exit(0);
             break;
         case 'show': 
-            showTodos();
+            showTodos(files);
             break;
         case 'importance':
             showImportantTodos();
@@ -41,11 +43,7 @@ function processCommand (command) {
     }
 }
 
-function showTodos() { 
-    files.forEach((el) =>
-        el.match(/TODO/).input);
-}
-    
+
 
     
 
