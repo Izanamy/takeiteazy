@@ -1,6 +1,7 @@
 const { getAllFilePathsWithExtension, readFile } = require('./fileSystem');
 const { readLine } = require('./console');
 const showTodos = require('./commands/show');
+const showImportantTodos = require('./commands/important')
 const files = getFiles();
 
 app();
@@ -22,49 +23,35 @@ function processCommand (command) {
         case 'exit':
             process.exit(0);
             break;
+
         case 'show': 
-            showTodos(files);
+            console.log(showTodos(files));
             break;
-        case 'importance':
-            showImportantTodos();
+           
+        case 'important':
+            const todos = showTodos(files);
+            console.log(showImportantTodos(todos));
             break;
+
         case 'user':
             // TODO: сделать комманду user
             break;
+
         case 'sort':
             // TODO: сделать комманду sort
             break;
+
         case 'date':
             // TODO: сделать комманду date
             break;
+            
         default:
             console.log('wrong command');
             break;
     }
 }
-
-
-
-    
-
-// function showImportantTodos() {
-//     const importantTodos = filterImportance()
-//     console.log(importantTodos);
-// };
-
-// function filterImportance() { 
-//     const todosArray = getFiles();
-//     const regExp = (/!/ig);
-//     const filteredTodosArray = todosArray
-//         .filter((el) => {
-//             return el.match(regExp);
-//         });
-    
-//     return filteredTodosArray;
-// };
-
-
-
-
-
+            
 // TODO you can do it!
+
+
+

@@ -1,20 +1,42 @@
-function getLines(files) {
-    // console.log(files);
+function showTodos(files) {
+    const linesArray = getlinesArray(files);
+    const formattedTodoLines = linesArray.map(el => el.replace(/.*(?=\/\/ TODO)/, ''));
+    return formattedTodoLines;
+};
+    
+function getlinesArray(files) {
+    const todoLines = [];
+
     files.forEach(el => {
-        // console.log(1, el.split)
-        return  el.split('/n');
+        const lines = el.split('\n');
+
+        lines.forEach(line => {
+            if (line.match(/\/\/ TODO/i)) {
+                todoLines.push(line.match(/TODO/i).input);
+            }
+        })
     });
+
+    return todoLines;
 };
 
-function showTodos(files) {
-    console.log(2, getLines(files));
-    const linesArray = getLines(files);
-    
-    
-    
-    // return showTodos;
-}
 module.exports = showTodos;
+    
+    
+  
+
+
+    
+
+
+    
+
+    
+    
+   
+
+        
+    
 
 
 
