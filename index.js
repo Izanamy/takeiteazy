@@ -1,8 +1,11 @@
 const { getAllFilePathsWithExtension, readFile } = require('./fileSystem');
 const { readLine } = require('./console');
+const getTodos = require('./commands/todos_massive');
 const showTodos = require('./commands/show');
 const showImportantTodos = require('./commands/important')
+// const showUsernameTodos = require('./commands/user')
 const files = getFiles();
+const formattedTodoLines = getTodos(files);
 
 app();
 
@@ -25,15 +28,17 @@ function processCommand (command) {
             break;
 
         case 'show': 
-            console.log(showTodos(files));
+            showTodos(formattedTodoLines);
+            console.table([1,2,3])
             break;
            
-        case 'important':
-            const todos = showTodos(files);
-            console.log(showImportantTodos(todos));
+            case 'important':
+            showImportantTodos(formattedTodoLines);
             break;
+           
 
-        case 'user':
+        case 'user {username}':
+            // showUser(formattedTodoLines);
             // TODO: сделать комманду user
             break;
 
@@ -50,6 +55,12 @@ function processCommand (command) {
             break;
     }
 }
+
+function showTitles() {
+    console.log('| ! | User | Date | Comment | file |')
+}
+
+
             
 // TODO you can do it!
 

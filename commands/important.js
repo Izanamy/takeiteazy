@@ -1,13 +1,17 @@
-function showImportantTodos(todos) {
+
+function showImportantTodos(todoLines) {
     const sortImportant = [];
-    todos.forEach(el => { 
+    todoLines.forEach(el => { 
         if (el.match(/\!/)) {
             sortImportant.push(el.match(/\!/).input);
         }
     });
 
-    return sortImportant;
+    sortImportant.forEach(el => console.log(el));
 };
+    
+    
+
 
 module.exports = showImportantTodos;
     
